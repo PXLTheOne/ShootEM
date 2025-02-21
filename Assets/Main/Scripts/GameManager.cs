@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthText.text = "Health : " + playerController.health.ToString();
+        healthText.text = "HP : " + playerController.health.ToString();
     }
 
     public void StartGame(float difficulty)
