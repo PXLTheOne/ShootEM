@@ -42,7 +42,7 @@ public class EnemyBehaviour : MonoBehaviour
         float distance = Vector3.Distance(player.transform.position, transform.position);
         if (Mathf.Abs(distance) > minDistance)
         {
-            rb.velocity = moveDir * speed * Time.deltaTime;
+            rb.linearVelocity = moveDir * speed * Time.deltaTime;
             //isMoving = true;
         }
         else
