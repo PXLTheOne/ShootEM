@@ -16,11 +16,14 @@ public class PlayerController : MonoBehaviour
     public AudioClip impactSound;
     [SerializeField] private ParticleSystem muzzleFlash;
 
+    //[SerializeField] private GameObject muzzleObject;
+
     private GameManager gameManager;
     private SpawnManager spawnManager;
     public GameObject gameOverScreen;
     public float fireRate = 0.2f;
     public float health;
+    //private Rigidbody muzzleRb;
 
     void Start()
     {
@@ -28,24 +31,25 @@ public class PlayerController : MonoBehaviour
         playerAudio = GetComponent<AudioSource>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
+        //muzzleRb = muzzleObject.GetComponent<Rigidbody>();
         muzzleFlash.Stop();
 
         health = 100.0f;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         float XInput = Input.GetAxis("Horizontal");
-        
-
         if (gameManager.isGameActive)
         {
             transform.Rotate(Vector3.up * XInput * Torque * Time.deltaTime);
+            //muzzleObject.transform.position = transform.position + transform.TransformDirection(new Vector3(0, 0.5f, 0.7f));
             if (Input.GetKey(KeyCode.Space) && CanShoot)
             {
                 StartCoroutine(ShootCoolDown());
-                
+                //Vector3 localTorqueAxis = muzzleObject.transform.TransformDirection(Vector3.forward);
+                //muzzleObject.transform.Rotate(Vector3.forward * -500 * Time.deltaTime, Space.Self);
             }
         }
     }
@@ -84,7 +88,6 @@ public class PlayerController : MonoBehaviour
                 gameOverScreen.SetActive(true);
                 gameManager.isGameActive = false;
             }
-
         }
     }
 }
