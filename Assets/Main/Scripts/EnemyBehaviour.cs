@@ -14,8 +14,9 @@ public class EnemyBehaviour : MonoBehaviour
     private float minDistance = 7f;
     private bool canShoot = true;
     private float enemyFireRate = 0.2f;
+    private Animator animator;
     //public Animator animator;
-    //private bool isMoving = true;
+    //private bool isMoving = false;
     //[SerializeField] private ParticleSystem muzzleFlash;
 
     public float speed;
@@ -23,6 +24,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
         gameOverScreen = GameObject.Find("GameOver Screen");
@@ -33,7 +35,6 @@ public class EnemyBehaviour : MonoBehaviour
     void Update()
     {
         transform.LookAt(player.transform);
-        //animator.SetBool("isWalking", isMoving);
     }
 
     private void FixedUpdate()
@@ -43,11 +44,11 @@ public class EnemyBehaviour : MonoBehaviour
         if (Mathf.Abs(distance) > minDistance)
         {
             rb.linearVelocity = moveDir * speed * Time.deltaTime;
-            //isMoving = true;
+            animator.SetBool("isWalking", true);
         }
         else
         {
-            //isMoving = false;
+            animator.SetBool("isWalking", false);
             if (canShoot && gameManager.isGameActive)
             {
                 StartCoroutine(ShootCoolDown());
