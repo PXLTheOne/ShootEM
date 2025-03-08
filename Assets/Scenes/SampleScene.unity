@@ -3786,8 +3786,9 @@ MonoBehaviour:
   shootingSound: {fileID: 8300000, guid: 6333e0064df3b9849b1634251d6fe315, type: 3}
   impactSound: {fileID: 8300000, guid: 5bf601cc43d48ce438dbe876a74dace0, type: 3}
   muzzleFlash: {fileID: 1002542199}
+  camera: {fileID: 1687258584}
   gameOverScreen: {fileID: 1891589304}
-  fireRate: 0.08
+  fireRate: 0.04
   health: 100
 --- !u!82 &2936021024647285331
 AudioSource:
