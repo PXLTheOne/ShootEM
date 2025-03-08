@@ -853,7 +853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7817571887294396915, guid: 9803bccbb163d6c41845020d2b6fc87f, type: 3}
       propertyPath: m_Name
-      value: MechaInsect
+      value: THICKSPIDER
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -890,10 +890,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGameActive: 0
-  titleScreen: {fileID: 1313078180}
+  DifficultyScreen: {fileID: 251875321}
   scoreText: {fileID: 1382770405}
   healthText: {fileID: 160244813}
   waveText: {fileID: 33455005}
+  TitleScreen: {fileID: 1313078180}
   healthTextObject: {fileID: 1508953657}
 --- !u!4 &352103385
 Transform:
@@ -991,7 +992,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 594805656}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 352103384}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ViewDiffScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &594805656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2951,6 +2964,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Yoffset: {x: 0, y: 14, z: -7}
+  YRotationOffset: {x: 65, y: 0, z: 0}
+  isGameStarted: 0
 --- !u!20 &1687258584
 Camera:
   m_ObjectHideFlags: 0
@@ -3315,7 +3330,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1908765509}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 352103384}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1908765509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3782,7 +3809,7 @@ MonoBehaviour:
   bulletOffset: {x: 0, y: 0.5, z: 1}
   flashOffset: {x: 0, y: 0.5, z: 0.65}
   coolDown: 1
-  playerAudio: {fileID: 0}
+  playerAudio: {fileID: 2936021024647285331}
   shootingSound: {fileID: 8300000, guid: 6333e0064df3b9849b1634251d6fe315, type: 3}
   impactSound: {fileID: 8300000, guid: 5bf601cc43d48ce438dbe876a74dace0, type: 3}
   muzzleFlash: {fileID: 1002542199}

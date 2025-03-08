@@ -9,10 +9,14 @@ public class GameManager : MonoBehaviour
 
     public bool isGameActive = false;
     private SpawnManager spawnManager;
-    public GameObject titleScreen;
+    private FollowPlayer followPlayerScript;
+    //Difficulty Screen
+    public GameObject DifficultyScreen;
     public GameObject scoreText;
     public TextMeshProUGUI healthText;
     public GameObject waveText;
+    //Title Screen
+    public GameObject TitleScreen;
 
     PlayerController playerController;
     public GameObject healthTextObject;
@@ -20,6 +24,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
+        followPlayerScript = Camera.main.GetComponent<FollowPlayer>();
         playerController = GameObject.Find("Player/TurretHead").GetComponent<PlayerController>();
     }
 
@@ -30,12 +35,25 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void ViewDiffScreen()
+    {
+        TitleScreen.SetActive(false);
+        DifficultyScreen.SetActive(true);
+    }
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
     public void StartGame(float difficulty)
     {
+        followPlayerScript.isGameStarted = true;
+        GameObject Spider = GameObject.Find("THICKSPIDER");
+        Destroy(Spider);
         isGameActive = true;
         spawnManager.spawnRate /= difficulty;
         StartCoroutine(spawnManager.SpawnEnemies());
-        titleScreen.SetActive(false);
+        DifficultyScreen.SetActive(false);
         scoreText.SetActive(true);
         waveText.SetActive(true);
         healthTextObject.SetActive(true);
