@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
     void RotateHead()
     {
         Vector3 mousePos = Input.mousePosition;
-        mousePos.z = Mathf.Abs(camera.transform.position.y - transform.position.y);
+        mousePos.z = Mathf.Abs(camera.transform.position.y - transform.position.y); //give ScreenToWorldPoint depth value so it doesn't default to 0
         Vector3 worldMousePosition = camera.ScreenToWorldPoint(mousePos);
 
         Vector3 dir = (worldMousePosition - transform.position).normalized;
