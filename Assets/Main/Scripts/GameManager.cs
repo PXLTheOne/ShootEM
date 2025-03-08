@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public GameObject titleScreen;
     public GameObject scoreText;
     public TextMeshProUGUI healthText;
+    public GameObject waveText;
+
     PlayerController playerController;
     public GameObject healthTextObject;
 
@@ -25,6 +27,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         healthText.text = "HP : " + playerController.health.ToString();
+
     }
 
     public void StartGame(float difficulty)
@@ -34,6 +37,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(spawnManager.SpawnEnemies());
         titleScreen.SetActive(false);
         scoreText.SetActive(true);
+        waveText.SetActive(true);
         healthTextObject.SetActive(true);
     }
 

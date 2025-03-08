@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -13,7 +14,6 @@ public class BulletBehaviour : MonoBehaviour
     public AudioClip impactSound;
     private PlayerController playerController;
     public string TargetTag;
-
 
     void Start()
     {
@@ -35,6 +35,10 @@ public class BulletBehaviour : MonoBehaviour
             Destroy(collision.gameObject);
             Destroy(gameObject);
             spawnManager.UpdateScore();
+        }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            spawnManager.enemiesSlain++;
         }
     }
 }

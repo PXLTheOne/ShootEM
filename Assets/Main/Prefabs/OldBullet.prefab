@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 3348271216087236891}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.813, z: 0.844}
+  m_LocalPosition: {x: -0.9840816, y: 2.9450703, z: 0.844}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -127,6 +127,7 @@ MonoBehaviour:
   bulletSpeed: 140
   impactSound: {fileID: 8300000, guid: 5bf601cc43d48ce438dbe876a74dace0, type: 3}
   TargetTag: Enemy
+  enemiesSlain: 0
 --- !u!54 &3348271216087236885
 Rigidbody:
   m_ObjectHideFlags: 0
