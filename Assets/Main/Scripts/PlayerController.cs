@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
 
     //[SerializeField] private GameObject muzzleObject;
 
+    [SerializeField] private Camera camera;
+
     private GameManager gameManager;
     private SpawnManager spawnManager;
     public GameObject gameOverScreen;
@@ -37,7 +39,14 @@ public class PlayerController : MonoBehaviour
         health = 100.0f;
     }
 
-    // Update is called once per frame
+    private void Update()
+    {
+        if (gameManager.isGameActive)
+        {
+            RotateHead();
+        }
+    }
+
     void FixedUpdate()
     {
         float XInput = Input.GetAxis("Horizontal");
@@ -45,13 +54,25 @@ public class PlayerController : MonoBehaviour
         {
             transform.Rotate(Vector3.up * XInput * Torque * Time.deltaTime);
             //muzzleObject.transform.position = transform.position + transform.TransformDirection(new Vector3(0, 0.5f, 0.7f));
-            if (Input.GetKey(KeyCode.Space) && CanShoot)
+            if (Input.GetKey(KeyCode.Mouse0) && CanShoot)
             {
                 StartCoroutine(ShootCoolDown());
                 //Vector3 localTorqueAxis = muzzleObject.transform.TransformDirection(Vector3.forward);
                 //muzzleObject.transform.Rotate(Vector3.forward * -500 * Time.deltaTime, Space.Self);
             }
         }
+    }
+
+    void RotateHead()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = Mathf.Abs(camera.transform.position.y - transform.position.y);
+        Vector3 worldMousePosition = camera.ScreenToWorldPoint(mousePos);
+
+        Vector3 dir = (worldMousePosition - transform.position).normalized;
+        dir.y = 0;
+
+        transform.rotation = Quaternion.LookRotation(dir);
     }
 
     void Shoot()

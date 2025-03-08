@@ -38,12 +38,12 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if (enemiesSlain >= maxEnemies)
+       if (enemiesSlain >= maxEnemies) //If all the enemies in the wave are slain
        {
             enemyCount = 0;
             enemiesSlain = 0;
             waveCount++;
-            UpdateWaveCount(); //updates wave text
+            UpdateWaveCount(); //Updates wave text
             maxEnemies += 2;
             StartCoroutine(SpawnEnemies()); //This starts the next wave
        }
@@ -57,7 +57,7 @@ public class SpawnManager : MonoBehaviour
 
     public IEnumerator SpawnEnemies()
     {
-        while (gameManager.isGameActive && enemyCount < maxEnemies)
+        while (gameManager.isGameActive && enemyCount < maxEnemies) 
         {
             yield return new WaitForSeconds(spawnRate);
             SpawnEnemy();
