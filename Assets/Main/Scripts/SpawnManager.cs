@@ -76,11 +76,11 @@ public class SpawnManager : MonoBehaviour
     public void UpdateScore()
     {
         score++;
-        scoreText.text = "Score : " + score;
+        scoreText.text = "SCORE : " + score;
     }
     public void UpdateWaveCount()
     {
-        WaveText.text = "Wave : " + waveCount;
+        WaveText.text = "WAVE : " + waveCount;
     }
 
 

@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject scoreText;
     public TextMeshProUGUI healthText;
     public GameObject waveText;
+    public GameObject HealthBar;
     //Title Screen
     public GameObject TitleScreen;
 
@@ -56,7 +57,8 @@ public class GameManager : MonoBehaviour
         DifficultyScreen.SetActive(false);
         scoreText.SetActive(true);
         waveText.SetActive(true);
-        healthTextObject.SetActive(true);
+        //healthTextObject.SetActive(true);
+        HealthBar.SetActive(true);
     }
 
     public void Restart()

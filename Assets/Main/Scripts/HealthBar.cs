@@ -10,14 +10,12 @@ public class HealthBar : MonoBehaviour
 
     //variables
     public float maxHealth = 100f;
-    float health;
     float easeSpeed = 0.05f;
 
     private void Start()
     {
         playerControllerScript = GameObject.Find("TurretHead").GetComponent<PlayerController>();
-        health = maxHealth;
-        playerControllerScript.health = health;
+        playerControllerScript.health = maxHealth;
     }
 
     private void Update()
