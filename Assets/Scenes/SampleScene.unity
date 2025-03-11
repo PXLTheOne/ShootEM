@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 92496194}
   - component: {fileID: 92496193}
   - component: {fileID: 92496192}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3786,7 +3786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7817571887294396915, guid: 9803bccbb163d6c41845020d2b6fc87f, type: 3}
-  spawnRate: 1.5
+  spawnRate: 2
   waveCount: 0
   enemyCount: 0
   maxEnemies: 0
@@ -4052,9 +4052,12 @@ MonoBehaviour:
   shootingSound: {fileID: 8300000, guid: 6333e0064df3b9849b1634251d6fe315, type: 3}
   impactSound: {fileID: 8300000, guid: 5bf601cc43d48ce438dbe876a74dace0, type: 3}
   muzzleFlash: {fileID: 1002542199}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
   camera: {fileID: 1687258584}
   gameOverScreen: {fileID: 1891589304}
-  fireRate: 0.09
+  fireRate: 0.1
   health: 100
 --- !u!82 &2936021024647285331
 AudioSource:

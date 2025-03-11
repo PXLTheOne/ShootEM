@@ -15,10 +15,14 @@ public class PlayerController : MonoBehaviour
     public AudioClip shootingSound;
     public AudioClip impactSound;
     [SerializeField] private ParticleSystem muzzleFlash;
-
+    [SerializeField] private LayerMask enemyLayer;
     //[SerializeField] private GameObject muzzleObject;
 
     [SerializeField] private Camera camera;
+    private Ray selectRay;
+    private GameObject selectedEnemy;
+    private bool isRotating;
+    private Quaternion lookRotation;
 
     private GameManager gameManager;
     private SpawnManager spawnManager;
@@ -41,28 +45,60 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (gameManager.isGameActive)
-        {
-            RotateHead();
-        }
+        //if (gameManager.isGameActive)
+        //{
+        //    RotateHead();
+        //}
+
     }
 
     void FixedUpdate()
     {
+        if (Quaternion.Angle(transform.rotation, lookRotation) < 0.1f)
+        {
+            isRotating = false;
+        }
+
+        if (isRotating)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 15f * Time.deltaTime);
+        }
+
+        if (selectedEnemy != null && !isRotating && CanShoot)
+        {
+            
+            StartCoroutine(ShootWithCoolDown());
+        }
+
         float XInput = Input.GetAxis("Horizontal");
         if (gameManager.isGameActive)
         {
-            transform.Rotate(Vector3.up * XInput * Torque * Time.deltaTime);
+            //transform.Rotate(Vector3.up * XInput * Torque * Time.deltaTime);
             //muzzleObject.transform.position = transform.position + transform.TransformDirection(new Vector3(0, 0.5f, 0.7f));
             if (Input.GetKey(KeyCode.Mouse0) && CanShoot)
             {
-                StartCoroutine(ShootCoolDown());
+                SelectEnemy();       
                 //Vector3 localTorqueAxis = muzzleObject.transform.TransformDirection(Vector3.forward);
                 //muzzleObject.transform.Rotate(Vector3.forward * -500 * Time.deltaTime, Space.Self);
             }
         }
     }
 
+    void SelectEnemy()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = Mathf.Abs(camera.transform.position.y - transform.position.y);
+        selectRay = Camera.main.ScreenPointToRay(mousePos);
+        RaycastHit hit;
+        if (gameManager.isGameActive && Physics.Raycast(selectRay, out hit, Mathf.Infinity, enemyLayer))
+        {
+            selectedEnemy = hit.collider.gameObject;
+
+            lookRotation = Quaternion.LookRotation((selectedEnemy.transform.position - transform.position).normalized);
+            isRotating = true;   
+        }
+        
+    }
     void RotateHead()
     {
         Vector3 mousePos = Input.mousePosition;
@@ -87,7 +123,7 @@ public class PlayerController : MonoBehaviour
         Destroy(ShotBullet, 4f);
     }
 
-    IEnumerator ShootCoolDown()
+    IEnumerator ShootWithCoolDown()
     {
         CanShoot = false;
         Shoot();

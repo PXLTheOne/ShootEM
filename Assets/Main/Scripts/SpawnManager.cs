@@ -43,6 +43,7 @@ public class SpawnManager : MonoBehaviour
             enemyCount = 0;
             enemiesSlain = 0;
             waveCount++;
+            spawnRate *= 0.8f;
             UpdateWaveCount(); //Updates wave text
             maxEnemies += 2;
             StartCoroutine(SpawnEnemies()); //This starts the next wave

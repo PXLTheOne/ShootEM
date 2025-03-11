@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3348271216087236885}
   - component: {fileID: -3913179013506840081}
   - component: {fileID: 4115017313526311210}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: OldBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -127,7 +127,6 @@ MonoBehaviour:
   bulletSpeed: 140
   impactSound: {fileID: 8300000, guid: 5bf601cc43d48ce438dbe876a74dace0, type: 3}
   TargetTag: Enemy
-  enemiesSlain: 0
 --- !u!54 &3348271216087236885
 Rigidbody:
   m_ObjectHideFlags: 0

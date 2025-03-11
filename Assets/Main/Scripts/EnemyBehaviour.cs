@@ -51,7 +51,7 @@ public class EnemyBehaviour : MonoBehaviour
             animator.SetBool("isWalking", false);
             if (canShoot && gameManager.isGameActive)
             {
-                StartCoroutine(ShootCoolDown());
+                StartCoroutine(ShootWithCoolDown());
             }
         }
     }
@@ -67,7 +67,7 @@ public class EnemyBehaviour : MonoBehaviour
         Destroy(ShotBullet, 4f);
     }
 
-    IEnumerator ShootCoolDown()
+    IEnumerator ShootWithCoolDown()
     {
         canShoot = false;
         yield return new WaitForSeconds(1);
