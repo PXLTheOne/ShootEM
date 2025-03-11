@@ -32,8 +32,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthText.text = "HP : " + playerController.health.ToString();
-
+        healthText.text = playerController.health.ToString();
     }
 
     public void ViewDiffScreen()
