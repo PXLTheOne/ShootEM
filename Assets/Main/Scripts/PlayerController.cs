@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody playerRb;
-    public float Torque;
+    public float muzzleTorque;
     public GameObject bullet;
     public Vector3 bulletOffset;
     public Vector3 flashOffset;
@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip impactSound;
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private LayerMask enemyLayer;
-    //[SerializeField] private GameObject muzzleObject;
+    [SerializeField] private GameObject muzzleObject;
 
     [SerializeField] private Camera camera;
     private Ray selectRay;
@@ -62,12 +62,14 @@ public class PlayerController : MonoBehaviour
         if (isRotating)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 15f * Time.deltaTime);
+            muzzleObject.transform.rotation = transform.rotation;
         }
 
         if (selectedEnemy != null && !isRotating && CanShoot)
         {
             
             StartCoroutine(ShootWithCoolDown());
+            muzzleObject.GetComponent<Rigidbody>().AddTorque(muzzleTorque * Time.deltaTime * Vector3.forward);
         }
 
         float XInput = Input.GetAxis("Horizontal");
@@ -77,9 +79,10 @@ public class PlayerController : MonoBehaviour
             //muzzleObject.transform.position = transform.position + transform.TransformDirection(new Vector3(0, 0.5f, 0.7f));
             if (Input.GetKey(KeyCode.Mouse0) && CanShoot)
             {
-                SelectEnemy();       
+                SelectEnemy();
                 //Vector3 localTorqueAxis = muzzleObject.transform.TransformDirection(Vector3.forward);
-                //muzzleObject.transform.Rotate(Vector3.forward * -500 * Time.deltaTime, Space.Self);
+                
+                
             }
         }
     }
@@ -99,17 +102,18 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-    void RotateHead()
-    {
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = Mathf.Abs(camera.transform.position.y - transform.position.y); //give ScreenToWorldPoint depth value so it doesn't default to 0
-        Vector3 worldMousePosition = camera.ScreenToWorldPoint(mousePos);
 
-        Vector3 dir = (worldMousePosition - transform.position).normalized;
-        dir.y = 0;
+    //void RotateHead()
+    //{
+    //    Vector3 mousePos = Input.mousePosition;
+    //    mousePos.z = Mathf.Abs(camera.transform.position.y - transform.position.y); //give ScreenToWorldPoint depth value so it doesn't default to 0
+    //    Vector3 worldMousePosition = camera.ScreenToWorldPoint(mousePos);
 
-        transform.rotation = Quaternion.LookRotation(dir);
-    }
+    //    Vector3 dir = (worldMousePosition - transform.position).normalized;
+    //    dir.y = 0;
+
+    //    transform.rotation = Quaternion.LookRotation(dir);
+    //}
 
     void Shoot()
     {

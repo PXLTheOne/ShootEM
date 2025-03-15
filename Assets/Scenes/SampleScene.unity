@@ -4159,7 +4159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b89a2a8e2ad48a44c8e0549c8686033d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Torque: 280
+  muzzleTorque: 100000
   bullet: {fileID: 3348271216087236891, guid: 7dda595c6677be4408ca2be3dc425bd0, type: 3}
   bulletOffset: {x: 0, y: 0.5, z: 1}
   flashOffset: {x: 0, y: 0.5, z: 0.65}
@@ -4171,6 +4171,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+  muzzleObject: {fileID: 8047700252780824121}
   camera: {fileID: 1687258584}
   gameOverScreen: {fileID: 1891589304}
   fireRate: 0.1
@@ -4607,7 +4608,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 62
   m_CollisionDetection: 0
 --- !u!114 &8047700252780824123
 MonoBehaviour:
