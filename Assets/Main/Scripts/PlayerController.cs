@@ -80,9 +80,6 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(KeyCode.Mouse0) && CanShoot)
             {
                 SelectEnemy();
-                //Vector3 localTorqueAxis = muzzleObject.transform.TransformDirection(Vector3.forward);
-                
-                
             }
         }
     }
@@ -111,7 +108,6 @@ public class PlayerController : MonoBehaviour
 
     //    Vector3 dir = (worldMousePosition - transform.position).normalized;
     //    dir.y = 0;
-
     //    transform.rotation = Quaternion.LookRotation(dir);
     //}
 

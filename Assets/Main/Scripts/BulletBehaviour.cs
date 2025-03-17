@@ -38,11 +38,11 @@ public class BulletBehaviour : MonoBehaviour
             HealthUI.HealthEdit(EnemyScript.Health);
             //Destroy(collision.gameObject);  i commented it bec he has health now ;-;
             Destroy(gameObject);
-            spawnManager.UpdateScore();
+            //spawnManager.UpdateScore();    this line moved to enemy behaviour since now enemies don't die instantly
         }
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            spawnManager.enemiesSlain++;
-        }
+        //if (collision.gameObject.CompareTag("Enemy"))
+        //{
+        //    //spawnManager.enemiesSlain++;    this line moved to enemy behaviour since now enemies don't die instantly
+        //}
     }
 }

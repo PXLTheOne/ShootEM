@@ -3991,7 +3991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7817571887294396915, guid: 9803bccbb163d6c41845020d2b6fc87f, type: 3}
-  spawnRate: 2
+  spawnRate: 4
   waveCount: 0
   enemyCount: 0
   maxEnemies: 0

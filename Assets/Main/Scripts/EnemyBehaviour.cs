@@ -14,8 +14,9 @@ public class EnemyBehaviour : MonoBehaviour
 
     //Scripts
     private GameManager gameManager;
+    private SpawnManager spawnManager; 
 
-    //Var
+    //Vars
     private float minDistance = 7f;
     private bool canShoot = true;
     private float enemyFireRate = 0.2f;
@@ -36,16 +37,18 @@ public class EnemyBehaviour : MonoBehaviour
         gameOverScreen = GameObject.Find("GameOver Screen");
 
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.LookAt(player.transform);
-
         if (Health <= 0) //NEW: basic health destroy system !!!!!
         {
             Destroy(gameObject);
+            spawnManager.enemiesSlain++;
+            spawnManager.UpdateScore();
         }
     }
 
