@@ -5,15 +5,21 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
+    //Objects // Combonents
     private GameObject player;
     private Rigidbody rb;
     private GameObject gameOverScreen;
     public GameObject bullet;
     public Vector3 bulletOffset;
+
+    //Scripts
     private GameManager gameManager;
+
+    //Var
     private float minDistance = 7f;
     private bool canShoot = true;
     private float enemyFireRate = 0.2f;
+    public float Health = 4;
     private Animator animator;
     //public Animator animator;
     //private bool isMoving = false;
@@ -28,6 +34,7 @@ public class EnemyBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
         gameOverScreen = GameObject.Find("GameOver Screen");
+
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
@@ -35,6 +42,11 @@ public class EnemyBehaviour : MonoBehaviour
     void Update()
     {
         transform.LookAt(player.transform);
+
+        if (Health <= 0) //NEW: basic health destroy system !!!!!
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void FixedUpdate()

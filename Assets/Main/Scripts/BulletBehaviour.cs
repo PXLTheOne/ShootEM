@@ -32,7 +32,11 @@ public class BulletBehaviour : MonoBehaviour
         if (collision.collider.CompareTag(TargetTag))
         {
             AudioSource.PlayClipAtPoint(impactSound, transform.position, 550);
-            Destroy(collision.gameObject);
+            EnemyBehaviour EnemyScript = collision.gameObject.GetComponent<EnemyBehaviour>();
+            EnemyHealth HealthUI = collision.gameObject.GetComponentInChildren<EnemyHealth>();
+            EnemyScript.Health--; //this bullet only got 1 dmg point
+            HealthUI.HealthEdit(EnemyScript.Health);
+            //Destroy(collision.gameObject);  i commented it bec he has health now ;-;
             Destroy(gameObject);
             spawnManager.UpdateScore();
         }

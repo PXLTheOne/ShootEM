@@ -27,7 +27,7 @@ public class HealthBar : MonoBehaviour
 
         if (healthBarSlider.value != easeHealthBarSlider.value)
         {
-            easeHealthBarSlider.value = Mathf.Lerp(easeHealthBarSlider.value, playerControllerScript.health, easeSpeed);
+            easeHealthBarSlider.value = Mathf.Lerp(easeHealthBarSlider.value, healthBarSlider.value, easeSpeed);
         }
     }
 }
