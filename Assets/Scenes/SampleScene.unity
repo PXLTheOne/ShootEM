@@ -4261,8 +4261,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   muzzleObject: {fileID: 8047700252780824121}
-  camera: {fileID: 1687258584}
   gameOverScreen: {fileID: 1891589304}
+  camera: {fileID: 1687258584}
   fireRate: 0.1
   health: 100
 --- !u!82 &2936021024647285331
@@ -4593,7 +4593,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7176888997481367940, guid: 4452c5e5103271f47acd00c8d5f1acf0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.016
+      value: -0.018
       objectReference: {fileID: 0}
     - target: {fileID: 7176888997481367940, guid: 4452c5e5103271f47acd00c8d5f1acf0, type: 3}
       propertyPath: m_LocalPosition.y

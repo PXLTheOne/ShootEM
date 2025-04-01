@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private GameObject muzzleObject;
+    public GameObject gameOverScreen;
 
     [SerializeField] private Camera camera;
     private Ray selectRay;
@@ -24,12 +25,12 @@ public class PlayerController : MonoBehaviour
     private bool isRotating;
     private Quaternion lookRotation;
 
+    //Scripts
     private GameManager gameManager;
     private SpawnManager spawnManager;
-    public GameObject gameOverScreen;
+
     public float fireRate = 0.2f;
     public float health;
-    //private Rigidbody muzzleRb;
 
     void Start()
     {
@@ -37,9 +38,7 @@ public class PlayerController : MonoBehaviour
         playerAudio = GetComponent<AudioSource>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
-        //muzzleRb = muzzleObject.GetComponent<Rigidbody>();
         muzzleFlash.Stop();
-
         health = 100.0f;
     }
 
@@ -49,7 +48,6 @@ public class PlayerController : MonoBehaviour
         //{
         //    RotateHead();
         //}
-
     }
 
     void FixedUpdate()
@@ -67,7 +65,6 @@ public class PlayerController : MonoBehaviour
 
         if (selectedEnemy != null && !isRotating && CanShoot)
         {
-            
             StartCoroutine(ShootWithCoolDown());
             muzzleObject.GetComponent<Rigidbody>().AddTorque(muzzleTorque * Time.deltaTime * Vector3.forward);
         }
@@ -87,17 +84,14 @@ public class PlayerController : MonoBehaviour
     void SelectEnemy()
     {
         Vector3 mousePos = Input.mousePosition;
-        mousePos.z = Mathf.Abs(camera.transform.position.y - transform.position.y);
         selectRay = Camera.main.ScreenPointToRay(mousePos);
         RaycastHit hit;
         if (gameManager.isGameActive && Physics.Raycast(selectRay, out hit, Mathf.Infinity, enemyLayer))
         {
             selectedEnemy = hit.collider.gameObject;
-
             lookRotation = Quaternion.LookRotation((selectedEnemy.transform.position - transform.position).normalized);
             isRotating = true;   
         }
-        
     }
 
     //void RotateHead()
